@@ -6,7 +6,7 @@
    Typography
    ========================================================================== */
 
-$doc-font-size: 16 !default;
+$doc-font-size: 10 !default; // was 16
 
 /* paragraph indention */
 $paragraph-indent: false !default; // true, false (default)
@@ -123,7 +123,7 @@ $notice-background-mix: 80% !default;
 $code-notice-background-mix: 90% !default;
 
 /* syntax highlighting (base16) */
-$base00: #263238 !default;
+/*$base00: #263238 !default;
 $base01: #2e3c43 !default;
 $base02: #314549 !default;
 $base03: #546e7a !default;
@@ -138,17 +138,33 @@ $base0b: #c3e88d !default;
 $base0c: #89ddff !default;
 $base0d: #82aaff !default;
 $base0e: #c792ea !default;
-$base0f: #ff5370 !default;
+$base0f: #ff5370 !default;*/
+$base00: #f5f0e7 !default;
+$base01: #e7e2d9 !default;
+$base02: #d8d4cb !default;
+$base03: #73777f !default;
+$base04: #5a5f66 !default;
+$base05: #43474e !default;
+$base06: #2c3138 !default;
+$base07: #181c22 !default;
+$base08: #d02023 !default;
+$base09: #bf3e05 !default;
+$base0a: #9d6f00 !default;
+$base0b: #637200 !default;
+$base0c: #007a72 !default;
+$base0d: #0073b5 !default;
+$base0e: #4e66b6 !default;
+$base0f: #c42775 !default;
 
 /*
    Breakpoints
    ========================================================================== */
 
-$small: 600px !default;
-$medium: 768px !default;
-$medium-wide: 900px !default;
-$large: 1024px !default;
-$x-large: 1280px !default;
+$small: 768px !default; // 600px !default;
+$medium: 900px !default; // 768px !default;
+$medium-wide: 1024px !default; // 900px !default;
+$large: 1280px !default; // 1024px !default;
+$x-large: 1550px !default; // 1280px !default;
 $max-width: $x-large !default;
 
 /*
