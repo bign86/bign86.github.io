@@ -22,20 +22,20 @@ The ERP is the compensation investors require to make them indifferent between h
 
 The challange in estimating the ERP is that it is not clear what constitutes the market return and the risk-free rate. For the former, indeces are commonly used that do not represent the whole market and miss several components of wealh such as housing, private wealth, human capital.
 
-The realized stock return $R_{t+k}$ between $t$ and $t+k$ is decomposed in
+The realized stock return \(R_{t+k}\) between \(t\) and \(t+k\) is decomposed in
 
 $$R_{t+k} = E_t[R_{t+k}] + \varepsilon_{t+k}$$
 
-or an expected part given the information available at time $t$, and an error part.<br>
-The ERP at time $t$ for the horizon $k$ is defined as
+or an expected part given the information available at time \(t\), and an error part.\
+The ERP at time \(t\) for the horizon \(k$ is defined as
 
 $$ERP_t(k) = E_t[R_{t+k}] - R^f_{t+k}$$
 
 Three aspects:
 
 * future returns and ERP are stochastic
-* the ERP depends on the length of the future horizon $k$
-* if investors are rational, $\varepsilon_{t+k}$ is othogonal to $E_t[R_{t+k}]$ and the ERP is smoother than realized excess returns
+* the ERP depends on the length of the future horizon \(k\)
+* if investors are rational, \(\varepsilon_{t+k}\) is othogonal to \(E_t[R_{t+k}]\) and the ERP is smoother than realized excess returns
 
 ## Model types
 
@@ -53,7 +53,8 @@ The discount factor depends on the ERP
 
 $$\rho_{t+k} = 1 + R^f_{t+k} + ERP_t(k)$$
 
-where the risk-free takes into account the time-value of money and the ERP the discounting associate with the riskiness of dividends.<br>An advantage of this type of model is that it is forward-looking.
+where the risk-free takes into account the time-value of money and the ERP the discounting associate with the riskiness of dividends.\
+An advantage of this type of model is that it is forward-looking.
 
 ### Cross-section regression
 
@@ -61,13 +62,13 @@ This method exploits the variation in returns across assets. The following regre
 
 $$R^i_{t+k} - R^f_{t+k} = \alpha^i\cdot S_{t+k} + \beta^i\cdot F_{t+k} + I^i_{t+k}$$
 
-with $S_{t+k}$ state variables such as inflation, unemployment, bond yield spread, $F_{t+k}$ systematic risk factors such as Fama-French factors, $I^i_{t+k}$ company-specific factors for asset $i$.
+with \(S_{t+k}\) state variables such as inflation, unemployment, bond yield spread, \(F_{t+k}\) systematic risk factors such as Fama-French factors, \(I^i_{t+k}\) company-specific factors for asset \(i\).
 
-The regression above yields the exposures $\hat{\beta}$ that are employied in the following regression
+The regression above yields the exposures \(\hat{\beta}\) that are employied in the following regression
 
 $$R^i_{t+k} - R^f_{t+k} = \lambda_t(k)\cdot\hat{\beta}^i$$
 
-that yields estimated coefficients $\hat{\lambda}_t(k)$. The product term on the right hand side of the equation above corresponding to the market proxy is the $ERP_t(k)$.
+that yields estimated coefficients \(\hat{\lambda}_t(k)\). The product term on the right hand side of the equation above corresponding to the market proxy is the \(ERP_t(k)\).
 
 ### Time-series regression
 
@@ -75,7 +76,7 @@ Time-series approaches are based on the relationships between stock returns and 
 
 $$R_{t+k} - R^f_{t+k} = \alpha + \beta\cdot F_t + \varepsilon_t$$
 
-with $F_t$ fundamental variables. The ERP is found from the estimated $\hat{\alpha}$ and $\hat{\beta}$:
+with \(F_t\) fundamental variables. The ERP is found from the estimated \(\hat{\alpha}\) and \(\hat{\beta}\):
 
 $$ERP_t(k) = \hat{\alpha} + \hat{\beta}\cdot F_t$$
 
@@ -91,7 +92,7 @@ The paper combines all the models (20) into a single determination of the ERP th
 
 1. The single-model ERP estimates are de-meaned
 2. The variance-covariance matrix is determined
-3. <div>A principal component analysis (PCA) is carried out to determine the weight each model should have in the final determination. This is done throught he following equation:
+3. A principal component analysis (PCA) is carried out to determine the weight each model should have in the final determination. This is done throught he following equation:
 
     $$PC^{(1)}_t = \sum_m w_m \cdot ERP_{t,m}$$
 
@@ -99,7 +100,7 @@ The paper combines all the models (20) into a single determination of the ERP th
 
     $$ERP_{t,m} = \sum_i \lambda^{(i)}_m \cdot PC^{(i)}_t$$
 
-    where $\lambda$ represents the weight of each model in the final ERP and $i$ runs on the principal components of the variance-covariance matrix.</div>
+    where \(\lambda\) represents the weight of each model in the final ERP and $i$ runs on the principal components of the variance-covariance matrix.
 
 ## Critique
 
