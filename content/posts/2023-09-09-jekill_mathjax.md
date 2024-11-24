@@ -1,5 +1,5 @@
 ---
-title: "Adding MathJax to Jekill"
+title: Adding MathJax to Jekill
 date: 2023-09-09
 tags:
   - jekyll
@@ -9,7 +9,8 @@ categories:
 author_profile: true
 draft: false
 comments: false
-mathjax: true
+math: true
+slug: adding-mathjax-jekill
 ---
 
 I used the following instructions to enable MathJax in Jekill using the Minimal Mistakes theme.

@@ -14,6 +14,8 @@ math: true
 slug: notes-equity-risk-premium-review-models
 ---
 
+_Paper_: "The Equity Risk Premium: A Review of Models", F. Duarte and C. Rosa, Federal Reserve Bank, Staff Reports, no. 714, 2015
+
 The paper combines 20 Equity Risk Premium models used in literature and industry, and averages them to infer the ERP.
 
 ## Equity Risk Premium

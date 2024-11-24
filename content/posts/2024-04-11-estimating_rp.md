@@ -14,6 +14,8 @@ math: true
 slug: notes-estimating-equity-risk-premiums
 ---
 
+_Paper_: "Estimating Equity Risk Premiums", A. Damodaran, Stern School of Business
+
 The paper reviews the historical approach to the calculation of the equity risk premium.
 
 ## Risk and return

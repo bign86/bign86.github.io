@@ -115,6 +115,10 @@ params:
     keys: ["title", "permalink", "summary", "content"]
 menu:
   main:
+    - identifier: notes
+      name: notes
+      url: /notes/
+      weight: 5
     - identifier: categories
       name: categories
       url: /categories/
@@ -123,6 +127,10 @@ menu:
       name: tags
       url: /tags/
       weight: 20
+    #- identifier: search
+    #  name: search
+    #  url: /search/
+    #  weight: 30
     #- identifier: example
     #  name: example.org
     #  url: https://example.org

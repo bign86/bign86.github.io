@@ -1,20 +1,21 @@
 ---
-title: "List packages in Debian"
+title: List packages in Debian
 date: 2010-05-10
 modified: 2011-09-09
 tags:
-  - linux
-  - debian
-  - package
-  - system
+   - linux
+   - debian
+   - package
+   - system
 categories:
-  - debian
+   - debian
 author_profile: true
 draft: false
 comments: false
+slug: list-packages-debian
 ---
 
-It is often useful to have a list of installed software on your Linux box. For example if you are installing a distribution on many machines, in this way you can customize packages only in one and replicate the same system everywhere. Or, if your box crashes in a unrecoverable way, you can set up a new one in few minutes.\\
+It is often useful to have a list of installed software on your Linux box. For example if you are installing a distribution on many machines, in this way you can customize packages only in one and replicate the same system everywhere. Or, if your box crashes in a unrecoverable way, you can set up a new one in few minutes.\
 This howto works with `dpkg` present in Debian and derivated.
 
 ## Create the list of packages
@@ -47,20 +48,20 @@ ii  deskbar-applet                  2.26.2-1               universal search and 
 The list is very long. You can redirect this list to a fie to create a simple selection.
 
 ```bash
-$ dpkg -l | grep ii | awk '{print $2} > installed
+dpkg -l | grep ii | awk '{print $2} > installed
 ```
 
 But `dpkg` has a specific tool for this purpose. It's very simple to use and create a simple list of installed packages with only one command
 
 ```bash
-$ dpkg --get-selections > installed
+dpkg --get-selections > installed
 ```
 
-Is convenient to create the list with only the names of packages, one for each line of the file. This is the simplest format and you can be sure that will be read easily when you will install the packages in this list.\\
+Is convenient to create the list with only the names of packages, one for each line of the file. This is the simplest format and you can be sure that will be read easily when you will install the packages in this list.\
 Enter
 
 ```bash
-$ dpkg --get-selections | grep install | awk '{print $1}' > installed
+dpkg --get-selections | grep install | awk '{print $1}' > installed
 ```
 
 ## Restore of the packages
@@ -70,27 +71,27 @@ Now we want to replicate the original system using ours list of packages. All th
 * With `dselect`
 
    ```bash
-   # dpkg --set-selections < installed
-   # dselect install
+   dpkg --set-selections < installed
+   dselect install
    ```
 
 * With `aptitude`
 
    ```bash
-   # aptitude install < installed
+   aptitude install < installed
    ```
 
 * With `apt`
 
    ```bash
-   # dpkg --set-selections < installed
-   # apt-get dselect-upgrade
+   dpkg --set-selections < installed
+   apt-get dselect-upgrade
    ```
 
 If we have created the simplest list with only the file name we can use the shell and `xargs` to pass to `apt` the packages to install
 
 ```bash
-# cat installed | xargs apt-get install
+cat installed | xargs apt-get install
 ```
 
 All these commands will do the work but the one I prefer is the third using `dpkg` and `apt`.

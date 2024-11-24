@@ -1,5 +1,5 @@
 ---
-title: "Signals in Bash"
+title: Signals in Bash
 date: 2012-02-26
 modified: 2015-07-12
 tags:
@@ -12,6 +12,7 @@ categories:
 author_profile: true
 draft: false
 comments: false
+slug: signals-bash
 ---
 
 Signals are one of the most important parts of the shells available on Unix. Although dealing with signals can be avoided writing small scripts, they became very important to introduce a new level of flexibility and to tackle situations where something is going wrong. Since are widely used in the shell any administrator should understand them very well. First I talk about the various signals available and then I present the trap function used to handle them in scripts.
@@ -20,7 +21,7 @@ Signals are integer numbers cast from a process, the operative system or a user 
 A detailed list of the signal available can be read using
 
 ```bash
-$ kill -l
+kill -l
  1) SIGHUP          2) SIGINT          3) SIGQUIT         4) SIGILL          5) SIGTRAP
  2) SIGABRT         7) SIGBUS          8) SIGFPE          9) SIGKILL        10) SIGUSR1
 1)  SIGSEGV        12) SIGUSR2        13) SIGPIPE        14) SIGALRM        15) SIGTERM
@@ -60,7 +61,7 @@ The list quite is long only but some of them are really widely used. These are t
 * `SIGTERM`: terminate the execution. Is the standard signal sent by the kill command, and since it can be trapped, allow the script to execute code to terminate its own execution cleanly. If the receiver terminal is interactive it ignores `SIGTERM` so that the command
 
 ```bash
-$ kill 0
+kill 0
 ```
 
 will not kill the terminal.
