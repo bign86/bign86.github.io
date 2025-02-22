@@ -11,11 +11,7 @@ math: true
 
 The **Expected value \(E[X],\:\mu\)** is the first _raw_ moment and a generalization of the weighted average. Is the mean of the possible values of the random variable \(X\). Note that the expected value may not be one possible outcome from the sample space. It is not therefore, the value one would "expect" to obtain from a trial in the strict sense.
 
-The expected value is the raw moment \(\mu'_n\)
-
-$$\mu'_n = E\left[X^n\right] = \begin{cases}\sum_i x_i^n p_i & \text{Discrete variables}\\\int_{\mathbb{R}} x^n f(x)\:dx & \text{Continuous variables}\end{cases}$$
-
-where \(n=1\)
+The expected value is the raw moment \(\mu'_n\) where \(n=1\)
 
 $$\mu'_1 = E\left[X\right] = \begin{cases}\sum_i x_i p_i & \text{Discrete variables}\\\int_{\mathbb{R}} x f(x)\:dx & \text{Continuous variables}\end{cases}$$
 
@@ -35,7 +31,7 @@ However, in some cases of infinite summations, the value of the sum depends on t
 
 Whenever the random variable \(X\) admits a density \(f\), the expected value is given by
 
-$$E[X]=\int_{-\infty}^\infty x\:f(x)\:dx$$
+$$E[X]=\int_\mathbb{R} x\:f(x)\:dx$$
 
 The expected value can be defined also on the CDF \(F(x)\):
 

@@ -9,7 +9,7 @@ categories: [math, notes]
 math: true
 ---
 
-### Moments
+## Moments
 
 Moments are quantitative measures that can be related to the shape of a probability distribution.
 
@@ -35,7 +35,25 @@ $$\int\left(\frac{x - c}{s}\right)^n f(x)\:dx$$
 
 $$\tilde{\mu}_n = \frac{E\left[\left(X - E[X]\right)^n\right]}{\left(E\left[\left(X - E[X]\right)^2\right]\right)^{n/2}} = \frac{\mu_n}{\sigma^n} = \frac{\mu_n}{\mu_2^{n/2}}$$
 
-#### Common distribution moments
+### Moment generating function
+
+A moment generating function (MGF) defines the moments of a distribution and can be used to uniquely determine a probability distribution. However, there are real-valued distributions that do not have a moment generating function or moments. So, a moment generating function cannot be always used.
+
+With \(X\) random variable, the MGF \(M_X(t)\) is given by the expectation of the exponential of the random variable
+
+$$M_X(t) := E\left[e^{tX}\right] = \begin{cases}\sum_{i=0}^\infty e^{tx_i}p_i &\text{discrete variable}\\\int_{-\infty}^{\infty}e^{tx}f(x)\:dx &\text{continuous variable}\end{cases}$$
+
+if the expectation \(E[\cdot]\) exists in a neighborhood of \(t=0\). If the function exists, the n-th moment \(m_n\) can be calculated as
+
+$$m_n = M_X^n(0) = \left.\frac{d^n\:M_X}{dt^n}\right|_{t=0}\qquad\text{with }n\in\mathbb{N}>0$$
+
+#### Properties of MGF
+
+- **Log-convexity**: MGF are log-convex.
+- **Distribution specification**: with \(X\) and \(Y\) random variables
+  $$\text{if}\quad M_X(t)=M_Y(t)\quad\Longrightarrow\quad F_X(x)=F_Y(x)$$
+
+### Common distribution moments
 
 - **Expected value \(E[X],\:\mu\)**: first _raw_ moment and a generalization of the weighted average. Is the mean of the possible values of the random variable \(X\).
   $$E[X] = \begin{cases}\sum_i x_i p_i & \text{Discrete variables}\\\int_{-\infty}^{\infty} x f(x)\:dx & \text{Continuous variables}\end{cases}$$
@@ -48,3 +66,19 @@ $$\tilde{\mu}_n = \frac{E\left[\left(X - E[X]\right)^n\right]}{\left(E\left[\lef
 
 - **Kurtosis \(\text{kurt[X]}\)**: fourth _standardized_ moment. Measure of distribution "tailedness".
   $$\text{kurt[X]} = E\left[\left(\frac{X - \mu}{\sigma}\right)^4\right] = \frac{E\left[\left(X - \mu\right)^4\right]}{\left(E\left[\left(X - \mu\right)^2\right]\right)^2}$$
+
+## Cumulants
+
+Cumulants are quantities alternative to moments that, like moments, can be used to define a probability distribution.
+
+Cumulants of \(X\) are defined using a _cumulants generating function_ \(K(t)\) which is the logarithm of the _moment generating function_
+
+$$K(t)=\log\:E\left[e^{tX}\right]$$
+
+following the same requirements as for moments. If the cumulant function exists around \(t=0\), the k-th cumulant \(k_n\) can be calculated as
+
+$$k_n = K_X^n(0) = \left.\frac{d^n\:\log M_X}{dt^n}\right|_{t=0}\qquad\text{with }n\in\mathbb{N}>0$$
+
+### Internal links
+
+[Expected value](/notes/expected-value)

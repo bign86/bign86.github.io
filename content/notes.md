@@ -12,8 +12,19 @@ This is a list of all the notes I created on math and finance topics in the hope
 
 ## Statistics
 
-- [Probability and distributions](/notes/probability-distributions)
+- [Probability](/notes/probability)
+  - [Independence](/notes/independence)
   - [Additional basic concepts](/notes/additional-concepts)
-- [Independence](/notes/independence)
-- [Moments and cumulants](/notes/moments)
-  - [Expected Value](/notes/expected-value)
+- [Distributions](/notes/distributions)
+  - [Moments and cumulants](/notes/moments)
+    - [Expected Value](/notes/expected-value)
+- [Descriptive statistic](/notes/descriptive-statistic)
+  - [Median](/notes/median)
+- [Hypothesis testing](/notes/hypothesis-testing)
+  - [Student's t-test](/notes/student-t-test)
+  - [Variance tests](/notes/variance-tests)
+
+#### Distributions
+
+- [Binomial](/notes/binomial)
+- [Poisson](/notes/poisson)
