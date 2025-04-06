@@ -13,55 +13,55 @@ draft: false
 comments: false
 ---
 
-Links are connections between files and folders inside the filesystem that are very useful as they allow to shorten up the paths to access resources or create entry points with different names. In Unix the command to create a link is `ln`.\\
-The syntax is
+Links are connections to files or folders that allow to shorten up the paths to access resources or create entry points with different names. In Unix, the command to create a link is `ln`
 
 ```bash
 ln [options] [source_file] [link_name]
 ```
 
-In this way you create a special file (the link) that refer to the real file that is `source_file`.\\
-There are two different types of link in Unix. The hard link is a connection with the data of another file, while the soft link (or symbolic link) is a connection with the name of another file. There are few differences between these two kinds of link.
+This creates a special file (the link) that refers to the real file (`source_file`).\
+There are two different types of link: the _hard_ link is a connection to the data of another file, the _soft_ link (or _symbolic_ link) is a connection to the name of another file.
 
 ## Hard Links
 
-The hard link is a connection with the data inside a file. Every time a file is created on the disk an amount of memory is used. To allow the system to access such data a name for that data (the file name) is required. So an hard link is created. When the hard link referred to that data is removed, the memory is considered freed and rewritable. You have deleted a file.
+The hard link is a connection to the data of a file. When a file is created and some memory is used to store its content, a hard link is created with a name (the file name) to access it. When the hard link is removed, the memory is considered freed. The file has been deleted.\
+There can be several hard links pointing to the same data with different names. These are counted and the memory is not considered free as long as there is at least one hard link pointing to it.
 
-The same data can be pointed by many hard links. In practical the same file has different names. The number of hard links pointing to the same file is counted (a integer variable called reference counting) and the file cannot be deleted (the memory can not be freed) until there is at least one hard link pointing to it. Therefore, to completely delete a file in the filesystem and free its memory, you need to delete all the hard links pointing to it.
-
-To create an hard link in Unix is simple
+To create an hard link
 
 ```bash
-$ ln pointed_file link_name
+ln source_file link_name
 ```
 
-We have associated a second hard link to the same file. We can see the reference counting (the first field after permissions on the file, before the owner field) increased by 1
+This creates a new hard link (a new file) named `link_name` pointing to the same content already accessed through `source_file`. The reference counting (the first field from `ls` after permissions, before the owner field) increases by 1
 
 ```bash
-$ ls -l | grep physical_data
--rw-r--r--  1 nero nero   10181  1 ott  2010 physical_data
-$ ln physical_data new_link
-$ ls -l | grep physical_data
--rw-r--r--  2 nero nero   10181  1 ott  2010 physical_data
+ls -l | grep source_file
+-rw-r--r--  1 nero nero   10181  1 ott  2010 source_file
+
+ln source_file link_name
+
+ls -l | grep source_file
+-rw-r--r--  2 nero nero   10181  1 ott  2010 source_file
 ```
 
 ## Limitations
 
-* An hard link must refer to physical data on the same filesystem volume.
-* There can't be two hard links pointing to the same directory or a directory must have always reference counting 1. This is to avoid ambiguities in referring to parent directories and endless loop in recursions.
+* A hard link must refer to data on the same filesystem volume.
+* There cannot be two hard links pointing to the same directory. In other words directories must have reference counting 1. This is to avoid ambiguities in referring to parent directories and avoid endless loops in recursions.
 
 ## Soft Links
 
-The soft link (or symbolic link or symlink) does not refer to the data of a file, but to its name and contains the relative path to that file. As such, the link is independent from the pointed file. If the pointed file is modified the link is unaffected, and if the link is modifiesd or deleted, the file is unaffected.
+The soft link (or symbolic link or symlink) does not refer to the data of a file, but to its name and contains the relative path to the file. The soft link can be used to create connections to files on a different filesystem and can also point to directories.\
+Note that if a file or directory is deleted and hence the memory freed, the soft links pointing to them are left orphan as they don't partecipate to the reference counting.
 
-The soft link has more flexibility than the hard link. It can be used to create connections to files on a different filesystem and can point also to directories. The independence from the file means that if the file is deleted, the link doesn't know and continue to point to a non existing file. In this case the link is orphan.
+Permissions on a soft link are irrelevant, as access is regulated by the permissions on the pointed file. Hence, permissions for a soft link are usually `rwxrwxrwx` (or `777`).
 
-Permissions on a symlink in Unix are irrelevant, as access is regulated by the permissions on the pointed to file. Hence, permissions for a symlink are usually `rwxrwxrwx` (or `777`).
-
-To create a symlink use the `-s` option
+To create a soft link use the `-s` option
 
 ```bash
-$ ln -s pointed_file link_name
-$ ls -l | grep link_name
-lrwxrwxrwx  1 nero nero   10181  1 ott  2010 link_name -> pointed_file
+ln -s source_file link_name
+
+ls -l | grep link_name
+lrwxrwxrwx  1 nero nero   10181  1 ott  2010 link_name -> source_file
 ```

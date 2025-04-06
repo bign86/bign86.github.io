@@ -13,45 +13,40 @@ draft: false
 comments: false
 ---
 
-There are several way to destroy the MBR installation of your bootloader. The most common is probably a fresh Windows installation. Microsoft has this bad habit of wiping away any existing bootloader already present on your machine. Once the bootloader is gone Linux is unreachable (not exactly but we want our GRUB back!) How to fix the problem?
+There are several way to destroy the MBR installation of your bootloader. A common occurrence wih dual-boot system is that a fresh Windows installation wipes away the existing bootloader. Once the bootloader is gone Linux becomes (almost) unreachable. How to fix the problem?
 
-What you need is a Linux distribution bootable from CD/DVD/USB, the knowledge of your partition table or alternatively how to use a tool like `fdisk`, `df` or `cfdisk`. Personally I use RIPLinux, small and reliable.
+To proceed are needed a Linux distribution bootable from CD/DVD/USB and how to use a tool like `fdisk`, `df` or `cfdisk`. RIPLinux, small and reliable, is perfect for the job.
 
-## 1. Prepare to recover
+## 1. Preparations
 
-Boot your live system and get a terminal. If you don't know exactly your partition table use the tool you prefer to get it. For example
-
-```bash
-# fdisk -l
-```
-
-Now we need to mount some folders from the old system.\\
-The first is the root (`/`) partition of the system we want to recover. Let's suppose it's in the `/dev/hdb3` partition (change the device accordingly at your partition table). We mount it in `/mnt/`.
+Boot the live system and get to a terminal. Extract the partition table using one of the many tools. For example
 
 ```bash
-# mount -t auto -w /dev/hdb3 /mnt/
+fdisk -l
 ```
 
-To rewrite the MBR we need to `chroot` in the mounted system. The `dev/` and `proc/` folders are fundamental to have a running system and therefore we mount them too. Mount them `/mnt/` folder
+Now, we need to mount some folders from the system we want to recover.\
+The first is the root partition (`/`), that we mount in  `/mnt/`. Next, the `dev/` and `proc/` folders are fundamental to have a running system and must be mounted as well.
 
 ```bash
-# mount -o bind /dev /mnt/dev
-# mount -t proc /proc /mnt/proc
+mount -t auto -w /dev/hdb2 /mnt/
+mount -o bind /dev /mnt/dev
+mount -t proc /proc /mnt/proc
 ```
 
-We need also the `boot/` partition. This is not a problem if we have the `boot/` folder on the same physical partition of `/` since at this stage is already mounted. If this is not the case you'll need to mount it separately using
+Here it is assumed the root in in `hdb2`, change according to your system. The `boot/` folder must also be mounted. If `boot/` resides in a different partition then root, mount it as well. For example, if separated in `hdb1`
 
 ```bash
-# mount -t auto /dev/hdb2 /mnt/boot
+mount -t auto /dev/hdb1 /mnt/boot
 ```
 
-Chroot in the `/mnt/` folder.
+To rewrite the MBR we need to `chroot` in the system now mounted in `/mnt/`
 
 ```bash
-# chroot /mnt/
+chroot /mnt/
 ```
 
-The root (`/`) now is the one of the system to recover. We are in! The only thing to do is recover the bootloader.
+The root (`/`) is now the one of the system to recover. We are in! We can now start to recover the bootloader.
 
 ## 2. Recover the bootloader
 
@@ -60,23 +55,23 @@ The root (`/`) now is the one of the system to recover. We are in! The only thin
 Grub2 is very close to Grub in the recovery process. When you are in the chroot environment update Grub2 and install it in the MBR with
 
 ```bash
-# update-grub
-# grub-install /dev/hdb
+update-grub
+grub-install /dev/hdb
 ```
 
-(supposing `/dev/hdb` is the right disk)\\
+(supposing `/dev/hdb` is the right disk)\
 Always check if everything is ok
 
 ```bash
-# grub-install --recheck /dev/hdb
+grub-install --recheck /dev/hdb
 ```
 
-Now you can exit from the chroot and reboot the system.\\
+Now you can exit from the chroot and reboot the system.\
 Grub2 should always be able to detect correctly a Windows installation. If for some reason Windows has not been detected, use `os-prober` to search for it and then follow the previous steps.
 
 ```bash
-# os-prober
-# update-grub
+os-prober
+update-grub
 ```
 
 ### Grub
@@ -84,13 +79,13 @@ Grub2 should always be able to detect correctly a Windows installation. If for s
 Now deprecated in favor of Grub2, but maybe someone is still using it. To reinstall
 
 ```bash
-# grub-install /dev/hdb
+grub-install /dev/hdb
 ```
 
 If you want more control on operations start the Grub terminal with
 
 ```bash
-# grub
+grub
 ```
 
 In the terminal type
@@ -106,7 +101,7 @@ where as usual you need to enter the correct partitions. The root `(hdX,Y)` part
 To check for Windows without `os-prober` open the configuration file `menu.lst`:
 
 ```bash
-# nano /mnt/root/boot/grub/menu.lst
+nano /mnt/root/boot/grub/menu.lst
 ```
 
 The Windows entry is like this one (This is a Windows XP entry, don't know about newer Windows versions)
@@ -126,8 +121,8 @@ Done! Reboot the system.
 Recover the old Lilo is very simple. You need only to run
 
 ```bash
-# lilo
-# lilo -q
+lilo
+lilo -q
 ```
 
 The first command reinstalls Lilo while the second checks for errors.

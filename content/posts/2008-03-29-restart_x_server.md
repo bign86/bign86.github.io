@@ -13,37 +13,37 @@ draft: false
 comments: false
 ---
 
-How to force the restart of your X server when needed? Some quick methods...
+Some quick methods to force the restart of your X server.
 
 ### 1
 
-This a graphical methods:
+From a X11 session:
 
 ```bash
 Ctrl + Alt + Backspace
 ```
 
-This combo might be disabled on your window manager. To enable it in Gnome go to `System -> Preferences -> Keyboard`. Go to the Layouts tab and click the Options button. Enable "Key sequence to kill the X server".\\
-In KDE go to the `Menu -> System Settings -> Input devices -> Keyboard` and you will find the "Key sequence to kill the X server" option.
+This combination might be disabled on your window manager. To enable it in Gnome go to `System -> Preferences -> Keyboard` and click the _Options_ button in the _Layouts_ tab. Enable "Key sequence to kill the X server".\
+In KDE go to `Menu -> System Settings -> Input devices -> Keyboard` and enable the "Key sequence to kill the X server" option.
 
 ### 2
 
-A quick method to restart the X system in Debian is to go to one terminals (for example `[Ctrl + Alt + F1]`) and type
+Another quick method to restart the X system is
 
 ```bash
-# /etc/init.d/gdm restart
+/etc/init.d/gdm restart
 ```
 
-Substitute `gdm` with `gdm3`, `kdm` or any other manager you are using. In alternative you can do the same in two time with
+Substitute `gdm` with `gdm3`, `kdm` or any other manager you are using. The same can be done in two steps with
 
 ```bash
-# /etc/init.d/gdm stop
-# /etc/init.d/gdm start
+/etc/init.d/gdm stop
+/etc/init.d/gdm start
 ```
 
 ### 3
 
-An another version of the former method use the command service. The syntax is
+Using the `service` command the syntax is
 
 ```bash
 service <script> <action>
@@ -52,33 +52,33 @@ service <script> <action>
 where `<script>` is the same script you find in the `/etc/init.d/` directory and `<action>` is one of the accepted actions. For example
 
 ```bash
-# service gdm restart
+service gdm restart
 ```
 
 or
 
 ```bash
-# service gdm stop
-# service gdm start
+service gdm stop
+service gdm start
 ```
 
 ### 4
 
-In Fedora simply change the run level to one without the X server running. Usually you need to change from the 5 to the 3 entering
+In Fedora, the run level can be changed directly. Runlevels 3 does not have a X11 server running. Therefore use
 
 ```bash
-# init 3
+init 3
 ```
 
-from a terminal outside the X server (`[Ctrl + Alt + F1]`).
+from a terminal _outside_ the X server (`[Ctrl + Alt + F1]`).
 
 ### 5
 
-Use the `killall` command and restart the X server with `startx`. The difference with the previous is that in this case you will go directly inside the graphical session logged with the same user that run `startx`. With the methods 1 and 2 you will have to login with the user you want.
+Use the `killall` command and restart the X server with `startx`. The difference with the previous options is that in this case you will go directly inside the graphical session logged with the same user that run `startx`. With methods 1 and 2 you have to login again.
 
 ```bash
-# killall gdm
-# startx
+killall gdm
+startx
 ```
 
-As before substitute `gdm` with `gdm3`, `kdm` or any other manager you are using.
+As done above, substitute `gdm` with `gdm3`, `kdm` or any other manager in execution.

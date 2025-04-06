@@ -13,19 +13,19 @@ draft: false
 comments: false
 ---
 
-The script command let the user to log all the commands and the output from the current shell session. This is useful when we want to remember operations done during the session. We can also check the work of a script we have written.
-The command is very simple
+The script command lets the user create a log of executed commands and output from the current shell session. This may be useful also to verify a script's correctness of execution.\
+The command is simple
 
 ```bash
-$ script file_name
+script file_name
 ```
 
-From this moment all shell operations will be logged in the `file_name` file with starting and end time. To stop the recording we need to exit the shell or with the `Ctrl+D` combination.
+From this moment all shell operations will be logged in `file_name` with starting and end time. To stop the recording we need to exit the shell or use the `Ctrl+D` keys combination.
 
-## Useful options:
+## Useful options
 
-The `-c` option followed by a command run the command in a non interactive shell. The `-a` option append the current log at the bottom of an existing file
+The `-c` option followed by a command runs the command in a non-interactive shell. The `-a` option appends the current log at the bottom of an existing file
 
 ```bash
-$ script -c COMMAND -a file_name
+script -c COMMAND -a file_name
 ```

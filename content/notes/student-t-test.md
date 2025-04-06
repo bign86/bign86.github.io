@@ -38,7 +38,7 @@ The sample standard deviation is calculated as
 
 $$s = \left(\frac{1}{n-1}\sum_i\left(X_i - \langle X\rangle\right)^2\right)^{\frac{1}{2}}$$
 
-If the population variance was known, it would have been possible to write under \(H_0\)
+If the population variance \(\sigma\) was known, it would have been possible to write under \(H_0\)
 
 $$\langle X\rangle\sim\mathcal{N}(\mu,\:\sigma^2/n)\quad\Rightarrow\quad t=\frac{\langle X\rangle - \mu}{\sigma/\sqrt{n}}\sim\mathcal{N}(0,1)$$
 
@@ -57,14 +57,14 @@ The test statistic takes the form
 
 $$t = \frac{\langle X\rangle - \mu}{s/\sqrt{n}}$$
 
-with \(n\) sample size, \(\mu\) population mean, and \(s\) sample standard deviation. The ratio \(\tilde{\sigma}\) is called _Standard error of the mean_.
+with \(n\) sample size. The ratio \(s/\sqrt{n}\) is called _Standard error of the mean_.
 
 The number of degrees of freedom is \(n-1\).
 
 **Assumptions**
 
-- \(\langle X\rangle\) follows the Gaussian distribution \(\mathcal{N}\left(\mu, s^2/n\right)\). This is approximately true for large samples by the central limit theorem even when the sample is not normal.
-- \(Z \perp\!\!\!\perp \sigma\)
+- \(\langle X\rangle\) follows the Gaussian distribution \(\mathcal{N}\left(\mu, \sigma^2/n\right)\). This is approximately true for large samples by the central limit theorem even when the sample is not normal.
+- \((\langle X\rangle - \mu) \perp\!\!\!\perp \sigma\)
 - \(s^2\left(n-1\right)/\sigma^2\), with \(\sigma\) variance of the population, follows a \(\chi^2\) distribution with \(n-1\) degrees of freedom. This is true if when the sample observations come from a Gaussian and are i.i.d.
 
 The assumptions above are needed to guarantee _Exactness_, however, the sample does not need to be normal.

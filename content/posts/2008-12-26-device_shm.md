@@ -11,41 +11,39 @@ draft: false
 comments: false
 ---
 
-All'interno della directory `/dev` è possibile trovare un device chiamato `/shm`. Di che cosa si tratta?\\
-Questo particolare device è stato introdotto per la prima volta nel ramo 2.4.x del kernel e implementa il concetto di memoria condivisa (SHared Memory). Appare come un qualunque altro dispositivo ma in pratica si tratta di una cartella che utilizza il filesystem `tmpfs`. Qualunque file creato all'interno di questo device esiste solo in memoria condivisa ovvero nella RAM, ma nulla viene scritto su disco. Per questo motivo al riavvio della macchina il device è automaticamente svuotato. Con questo sistema un programma può riempire una porzione di memoria alla quale un altro processo può accedere se gli è permesso direttamente in RAM. Il risultato è un sensibile aumento di prestazioni.
+In the `/dev` directory there is a special device called `/shm`. What is it?\
+This particular device was first introduced in the 2.4.x branch of the kernel and implements the concept of shared memory (SHared Memory). It looks like any other device but in practice it is a folder that uses the `tmpfs` filesystem. Any file created inside this device exists only in the shared memory or in the RAM, while nothing is written to the disk. For this reason, when the machine is restarted, the device is automatically emptied. With this system a program can fill a portion of memory that another process can access directly, if allowed. The result is a significant increase in performance.
 
-Quindi ad esempio se spostiamo un qualsiasi file all'interno
-
-```bash
-$ cp -f ~/file /dev/shm
-```
-
-abbiamo semplicemente spostato il file in RAM.
-Di default la dimensione di questo filesystem è impostata su metà della RAM disponibile al sistema ma può ingrandirsi quanto vogliamo. Per farlo è sufficiente rimontare il device `shm` come si farebbe per un qualunque altro dispositivo semplicemente utilizzando il comando mount
+In practice, moving a file in the device
 
 ```bash
-# mount -o remount,size=2G /dev/shm
+cp -f ~/file /dev/shm
 ```
 
-Questo device tuttavia è stato introdotto per compatibilità con la memoria condivisa POSIX e non è del tutto consigliabile farne un uso eccessivo. Molto più utile è utilizzare direttamente il filesystem `tmpfs`.\\
-Ad esempio potremmo spostare in RAM file salvati su dispositivi lenti (CD per esempio) e sui quali facciamo tantissime operazioni di accesso in read-only. Volendo creare con il filesystem `tmpfs` una directory persistente montata in automatico ad ogni avvio della macchina possiamo utilizzare sempre il comando `mount`
+the file has been just moved to RAM.\
+By default, the size of this filesystem is set to half of the RAM available to the system, but it can be changed. To do this, remount the `shm` device as you would for any other device by using the `mount` command
 
 ```bash
-$ mkdir -p ~/cache
-$ mount -t tmpfs -o size=1G, mode=700 tmpfs ~/cache
+mount -o remount,size=2G /dev/shm
 ```
 
-Un altro campo di utilizzo è sicuramente la creazione di una cache su un server che ospita un sito internet. L'aumento di prestazioni può fare tantissima differenza anche su macchine virtuali come VMware.
-
-Ad esempio per creare la cache per il nostro sito possiamo semplicemente utilizzare i seguenti comandi
+This device was introduced for compatibility with POSIX shared memory and it is not advisable to use it excessively, instead, it is advisable to use the `tmpfs` filesystem. A use exmple could be to move files saved on slow devices (CDs for example) to RAM to perform read-only operations. To create a persistent directory within the `tmpfs` filesystem that is automatically mounted at each machine startup, we can use the `mount` command again
 
 ```bash
-# cd /var/www/sito/
-# mkdir -p ./tmp
-# mount -t tmpfs -o size=5G,nr_inodes=5k,mode=744 tmpfs /var/www/sito/tmp
+mkdir -p ~/cache
+mount -t tmpfs -o size=1G, mode=700 tmpfs ~/cache
 ```
 
-Se abbiamo una macchina dotata di più di 2G di RAM con molte macchine virtuali attive questo spesso fa una enorme differenza in termini di prestazioni. Per rendere queste modifiche disponibili ad igni riavvio della macchina possiamo impostarle all'interno di `/etc/fstab` aggiungendo questa riga
+Another exmpale of use is the creation of a cache on a server that hosts a website. The increase in performance can make a huge difference even on virtual machines like VMware.\
+For example, to create the cache for a site we can use the following commands
+
+```bash
+cd /var/www/sito/
+mkdir -p ./tmp
+mount -t tmpfs -o size=5G,nr_inodes=5k,mode=744 tmpfs /var/www/sito/tmp
+```
+
+If we have a machine with more than 2G of RAM running several virtual machines, this often makes a huge difference in terms of performance. To make these changes available at every reboot of the physical machine, we can add them in `/etc/fstab` by adding this line
 
 ```bash
 tmpfs /var/www/sito/tmp tmpfs size=5G,nr_inodes=5k,mode=744 0 0
