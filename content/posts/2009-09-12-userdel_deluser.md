@@ -17,10 +17,10 @@ In Unix there are two commands to delete users and groups: `userdel` e `deluser`
 
 ## Userdel
 
-This is ​​​​​a low-level command potentially harmful. It deletes the user from the system with all the files belonging to him.
+This is ​​​​​a low-level command potentially harmful. It deletes the user from the system with all the files belonging to him/her.
 
 ```bash
-# userdel -f user
+userdel -f user
 ```
 
 The `-f` op​​​​​tion forces the removal even if the user is connected to the system. The user directory inside `/home/` and all the mails will be deleted even if another user has the files currently open.
@@ -31,14 +31,14 @@ Inside the `/etc/login.defs` file you can define
 USERGROUPS_ENAB yes
 ```
 
-With this option enabled the `-f` option deletes the eventual group with the same name of the user even if another user is inside that group.
+With this option enabled the `-f` option deletes the group with the same name of the user (if any) even if another user is part of it.
 
 ## Deluser
 
 This is a very simple command
 
 ```bash
-# deluser user
+deluser user
 ```
 
 The configuration file for this program is `/etc/deluser.conf`.
@@ -54,16 +54,16 @@ Without options the user is deleted but all files, mail and home directory remai
 | `--system`          | user and group are removed only if of the system                                     |
 | `--conf`            | change the configuration file to use                                                 |
 
-The command can be give as
+The following command
 
 ```bash
-# delgroup
+delgroup
 ```
 
-that is an alias for
+is an alias for
 
 ```bash
-# deluser --group
+deluser --group
 ```
 
 _Note_: using the option `--force` you can remove the root (`UID 0`) account. Pay attention!

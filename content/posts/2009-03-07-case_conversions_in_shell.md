@@ -12,36 +12,36 @@ draft: false
 comments: false
 ---
 
-Doing some work I had the problem of convert strings from upper to lower case or viceversa. So for my own sake I searched all the methods to do this with the shell. I have collected my findings here.
+This post collects ways in several languages to convert between string cases in Bash.
 
 ## Using `tr`
 
 To convert a whole text file from upper to lowercase and viceversa
 
 ```bash
-$ tr "[:upper:]" "[:lower:]" < input.txt > output.txt
-$ tr "[:lower:]" "[:upper:]" < input.txt > output.txt
+tr "[:upper:]" "[:lower:]" < input.txt > output.txt
+tr "[:lower:]" "[:upper:]" < input.txt > output.txt
 ```
 
 To convert the content of a variable
 
 ```bash
-$ echo $VAR_NAME | tr "[:upper:]" "[:lower:]"
-$ echo $VAR_NAME | tr "[:lower:]" "[:upper:]"
+echo $VAR_NAME | tr "[:upper:]" "[:lower:]"
+echo $VAR_NAME | tr "[:lower:]" "[:upper:]"
 ```
 
 You can also use another syntax for the same command
 
 ```bash
-$ tr '[A-Z]' '[a-z]' < input.txt
-$ tr '[a-z]' '[A-Z]' < input.txt
+tr '[A-Z]' '[a-z]' < input.txt
+tr '[a-z]' '[A-Z]' < input.txt
 ```
 
-This method is easy to use inside a loop to build a shell script
+This method is easy to use within a loop in a shell script
 
 ```bash
-$ find . -type f | while read f; do mv $f `echo $f | tr "[:lower:]" "[:upper:]"`; done
-$ find . -type f | while read f; do mv $f `echo $f | tr "[:upper:]" "[:lower:]"`; done
+find . -type f | while read f; do mv $f `echo $f | tr "[:lower:]" "[:upper:]"`; done
+find . -type f | while read f; do mv $f `echo $f | tr "[:upper:]" "[:lower:]"`; done
 ```
 
 ## Using `dd`
@@ -49,24 +49,24 @@ $ find . -type f | while read f; do mv $f `echo $f | tr "[:upper:]" "[:lower:]"`
 The command `dd` has an option for case conversion
 
 ```bash
-$ dd if=input.txt of=output.txt conv=ucase
-$ dd if=input.txt of=output.txt conv=lcase
+dd if=input.txt of=output.txt conv=ucase
+dd if=input.txt of=output.txt conv=lcase
 ```
 
 ## Using `awk`
 
-The print command and the powerful program `awk` can be combined to change the case
+The `print` command and the powerful program `awk` can be combined to change the case
 
 ```bash
-$ awk '{ print toupper($0) }' input.txt > output.txt
-$ awk '{ print tolower($0) }' input.txt > output.txt
+awk '{ print toupper($0) }' input.txt > output.txt
+awk '{ print tolower($0) }' input.txt > output.txt
 ```
 
 To convert a variable
 
 ```bash
-$ echo $VAR_NAME | awk '{ print toupper($0) }'
-$ echo $VAR_NAME | awk '{ print tolower($0) }'
+echo $VAR_NAME | awk '{ print toupper($0) }'
+echo $VAR_NAME | awk '{ print tolower($0) }'
 ```
 
 ## Using perl
@@ -74,19 +74,19 @@ $ echo $VAR_NAME | awk '{ print tolower($0) }'
 Using the Perl language you can take advantage of the functions `uc()` and `lc()`
 
 ```bash
-$ perl -pe '$_= uc($_)' input.txt > output.txt
-$ perl -pe '$_= lc($_)' input.txt > output.txt
+perl -pe '$_= uc($_)' input.txt > output.txt
+perl -pe '$_= lc($_)' input.txt > output.txt
 ```
 
 The same technique can be used inside a Perl script.
 
 ## Using `sed`
 
-Also the `sed` command has a way to search for single characters and convert the case
+The `sed` command has a way to search for single characters and convert the case
 
 ```bash
-$ sed -e 's/\(.*\)/\U\1/' input.txt > output.txt
-$ sed -e 's/\(.*\)/\L\1/' input.txt > output.txt
+sed -e 's/\(.*\)/\U\1/' input.txt > output.txt
+sed -e 's/\(.*\)/\L\1/' input.txt > output.txt
 ```
 
 ## Using Bash 4.x
@@ -94,6 +94,6 @@ $ sed -e 's/\(.*\)/\L\1/' input.txt > output.txt
 Since Bash 4.0 a new parameter expansion for case conversion has been introduced
 
 ```bash
-$ ${VAR_NAME,,}    # to lowercase
-$ ${VAR_NAME^^}    # to uppercase
+${VAR_NAME,,}    # to lowercase
+${VAR_NAME^^}    # to uppercase
 ```
