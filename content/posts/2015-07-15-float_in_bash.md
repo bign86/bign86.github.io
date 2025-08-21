@@ -21,23 +21,23 @@ A very well known problem of Bash is the absence of floating point number capabi
 To perform a simple floating point operation pass a string describing the math to `bc`
 
 ```bash
-$ echo "1.452 + 9.236" | bc
+echo "1.452 + 9.236" | bc
 10.688
-$ echo "171/98" | bc
+echo "171/98" | bc
 1
 ```
 
 In the second example above, 1 is the correct integer part of the result, but we want decimals! `bc` by default gives us in the output the same number of decimal digits used in the input. The scale parameter manage the number of decimals we want to see
 
 ```bash
-$ echo "scale=5; 171/98" | bc
+echo "scale=5; 171/98" | bc
 1.74489
 ```
 
 Operations can be concatenated
 
 ```bash
-$ echo "1.2+3.4*5.6/7.8" | bc
+echo "1.2+3.4*5.6/7.8" | bc
 3.2
 ```
 
@@ -45,12 +45,12 @@ Last result can be reused using `last` or a dot `.`
 
 ```bash
 # Using last
-$ echo "1.2+3.4;last*5.6" | bc
+echo "1.2+3.4;last*5.6" | bc
 4.6
 25.7
 
 # Using a .
-$ echo "1.2+3.4;.*5.6" | bc
+echo "1.2+3.4;.*5.6" | bc
 4.6
 25.7
 ```
@@ -60,11 +60,11 @@ $ echo "1.2+3.4;.*5.6" | bc
 We can do comparisons with `bc`
 
 ```bash
-$ echo "1.5 < 4.5" | bc -l
+echo "1.5 < 4.5" | bc -l
 1   # True
-$ echo "1.5 > 4.5" | bc -l
+echo "1.5 > 4.5" | bc -l
 0   # False
-$ echo "2.4/4.8 == 0.5" | bc -l
+echo "2.4/4.8 == 0.5" | bc -l
 1   # True
 ```
 
@@ -105,7 +105,7 @@ Using it in scripts is very easy. Few pieces of codes:
 4. **Numbers converters**: `bc` can be used to convert numbers from one base to another. The two special variables `ibase` and `obase` define the base of the input and of the output. For example to convert the number 42 from base 10 to binary
 
    ```bash
-   $ echo "ibase=10; obase=2; 42" | bc
+   echo "ibase=10; obase=2; 42" | bc
    101010
    ```
 
@@ -116,30 +116,30 @@ Many operators are available using the standard math library enabled using the `
 1. **Exponentiation**
 
    ```bash
-   $ echo "1.5123^9" | bc -l
+   echo "1.5123^9" | bc -l
    41.37533941184533627968
    ```
 
 2. **Natural logaritm**
 
    ```bash
-   $ echo "l(1.5123)" | bc -l
+   echo "l(1.5123)" | bc -l
    .41363167077455779798
    ```
 
 3. **Sine, cosine**
 
    ```bash
-   $ echo "s(1.5123)" | bc -l
+   echo "s(1.5123)" | bc -l
    .99828957768901794850
-   $ echo "c(1.5123)" | bc -l
+   echo "c(1.5123)" | bc -l
    .05846297184955788583
    ```
 
 4. **Square root**
 
    ```bash
-   $ echo "sqrt(2)" | bc -l
+   echo "sqrt(2)" | bc -l
    1.41421356237309504880
    ```
 
@@ -149,6 +149,6 @@ There are several flavours of shell for Unix. None of them support floating poin
 
 ## Useful websites
 
-[Phoxis](http://phoxis.org/2009/12/23/floatmathbash/)\\
-[LJ](http://www.linuxjournal.com/content/floating-point-math-bash)\\
+[Phoxis](http://phoxis.org/2009/12/23/floatmathbash/)\
+[LJ](http://www.linuxjournal.com/content/floating-point-math-bash)\
 [Bc manual](http://www.gnu.org/software/bc/manual/html_mono/bc.html)

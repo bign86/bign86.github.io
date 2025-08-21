@@ -147,7 +147,7 @@ Header:
 #include <time.h>
 ```
 
-On Linux there is a better choice for high resolution measurements. The function `clock_gettime()` stores the time in a timespec structure with a theorical resolution of the nanosecond. As far as I know it should be able to reach the sub-microsecond resolution.\\
+On Linux there is a better choice for high resolution measurements. The function `clock_gettime()` stores the time in a timespec structure with a theorical resolution of the nanosecond. As far as I know it should be able to reach the sub-microsecond resolution.\
 _Note_: to use `clock_gettime()` you must link against the real-time library with `-lrt` compiling your project.
 
 To use this function we must choose between the clock available:

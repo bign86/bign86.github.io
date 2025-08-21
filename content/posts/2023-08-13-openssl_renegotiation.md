@@ -17,7 +17,7 @@ One important change is that it is now required by default to use a secure renot
 
 An outdated endpoint that does not support RFC 5746 secure renegotiation will return and error. On Python this may look similar to
 
-```
+```bash
 (Caused by SSLError(SSLError(1, '[SSL: UNSAFE_LEGACY_RENEGOTIATION_DISABLED] unsafe legacy renegotiation disabled (_ssl.c:1007)')))
 ```
 
@@ -64,7 +64,7 @@ is used to enable `SSL_OP_LEGACY_SERVER_CONNECT`.
 
 To enable the unsecure legacy connection option system-wide, change the file `/etc/ssl/openssl.cnf` making sure to have the following lines
 
-```
+```toml
 [ openssl_init ]
 ssl_conf = ssl_sect
 

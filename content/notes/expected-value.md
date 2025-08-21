@@ -63,11 +63,11 @@ There are several properties followed by the expected value for the most derivin
 6. **Non-degeneracy:**
   $$\text{if}\:\:E\left[\vert X\vert\right]=0\quad\Rightarrow\quad X=0\:\:\text{a.s.}$$
 
-7. **Non-multiplicativity:** linearity in the product requires independence of \(X\) and \(Y\)
-  $$X\perp\!\!\!\perp Y\qquad\Rightarrow\qquad E[X\:Y]=E[X]\:E[Y]$$
-
-8. **Absolute value:** it can be prooved that
+7. **Absolute value:** it can be proved that
   $$\vert E[X]\vert\leq E[X]$$
+
+8. **Non-multiplicativity:** linearity in the product requires _independence_ of \(X\) and \(Y\)
+  $$X\perp\!\!\!\perp Y\qquad\Rightarrow\qquad E[X\:Y]=E[X]\:E[Y]$$
 
 ### Important inequalities
 
@@ -87,3 +87,68 @@ There are a number of important inequalities related to the expected value. Here
 
 5. **Cauchy-Schwarz inequality:** very important special case of the Hölder inequality for \(p=q=2\)
   $$\left\vert E[X\:Y]\right\vert\leq\left(E\left[X^2\right]\right)^{\frac{1}{2}}\:\left(E\left[Y^2\right]\right)^{\frac{1}{2}}$$
+
+## Conditional expected value
+
+The conditional expected value \(E\left[X\vert Y\right]\) is defined as
+
+$$E\left[X\vert Y\right] = \sum_x x\:P\left(X=x\vert Y=y\right) = \sum_x x\:\frac{P\left(X=x, Y=y\right)}{P\left(Y=y\right)}\quad\text{discrete variables}$$
+$$E\left[X\vert Y\right] = \int_\mathbb{R} x\cdot f_{X\vert Y}\left(x\vert y\right)\:dx = \frac{1}{f_{Y}\left(y\right)}\int_\mathbb{R} x\cdot f_{X,Y}\left(x, y\right)\:dx\quad\text{continuous variables}$$
+
+### Properties of the conditional expected value
+
+1. **Independence:**
+  $$\text{if}\:\:X \perp\!\!\!\perp Y\quad\Rightarrow\quad E[X\vert Y]=E[X]$$
+
+2. **Ordering:**
+  $$\text{if}\:\:X \leq Y\quad\Rightarrow\quad E[XY]\leq E[Y]$$
+
+3. **Law of total expectation:**\
+  Follows from the law pf total probability.
+
+## Proofs of properties
+
+- **Non-negativity:**
+  > The proof follows from the definition of expected value noticing that probabilities are non-negative.
+
+- **Linearity:**
+  > The proof is identical for discrete and continuous variables. Starting with the discrete variables:
+  $$\begin{align*}
+  E\left[a\:X+b\:Y\right] &= \sum_{x\in X} \sum_{y\in Y} (ax+by)P\left(X=x,Y=y\right)\\
+  &= \sum_{x\in X}\sum_{y\in Y} ax\:P\left(X=x,Y=y\right) + \sum_{x\in X}\sum_{y\in Y} by\:P\left(X=x,Y=y\right)\\
+  &= a\:\sum_{x\in X}x\:\sum_{y\in Y} P\left(X=x,Y=y\right) + b\:\sum_{y\in Y} y\:\sum_{x\in X} P\left(X=x,Y=y\right)\\
+  &= a\:\sum_{x\in X}x\:P\left(X=x\right) + b\:\sum_{y\in Y} y\:P\left(Y=y\right)\\
+  &= a\:E\left[X\right] + b\:E\left[Y\right]\\
+  \end{align*}$$
+  For continuous variables
+  $$\begin{align*}
+  E\left[a\:X+b\:Y\right] &= \int_{X} \int_{y\in Y} (ax+by)\cdot f_{X,Y}\left(x,y\right)\:dx\:dy\\
+  &= \int_{X}\int_{Y} ax\cdot f_{X,Y}\left(x,y\right)\:dx\:dy + \int_{X}\int_{Y} by\cdot f_{X,Y}\left(x,y\right)\:dx\:dy\\
+  &= a\:\int_{X}x\:\int_{Y} f_{X,Y}\left(x,y\right)\:dx\:dy + b\:\int_{Y} y\:\int_{X} f_{X,Y}\left(x,y\right)\:dx\:dy\\
+  &= a\:\int_{X}x\cdot f_{X}\left(x\right)\:dx + b\:\int_{Y} y\cdot f_{Y}\left(y\right)\:dy\\
+  &= a\:E\left[X\right] + b\:E\left[Y\right]\\
+  \end{align*}$$
+
+- **Monotonicity:**
+  > Let \(Z=Y-X\), then
+  $$E\left[Z\right] = E\left[Y-X\right]= E\left[Y\right] - E\left[X\right]\quad\text{(linearity)}$$
+  and
+  $$\text{if}\quad Z\geq 0\quad\Rightarrow\quad E\left[Z\right]\geq 0\quad\text{(non-negativity)}$$
+  Equating the two conditions
+  $$E\left[Z\right] = E\left[Y\right] - E\left[X\right] \geq 0 \quad\Rightarrow\quad E\left[X\right] \geq E\left[Y\right]$$
+
+- **Non-multiplicativity:**
+  > Assume \(X\) and \(Y\) independent. Then, for discrete variables
+  $$\begin{align*}
+  E\left[X\:Y\right] &= \sum_{x\in X} \sum_{y\in Y} (x\cdot y)P\left(X=x,Y=y\right)\\
+  &= \sum_{x\in X} \sum_{y\in Y} (x\cdot y)\left(P(X=x)\cdot P(Y=y)\right) &\text{(independence)}\\
+  &= \sum_{x\in X} x\:P(X=x)\:\sum_{y\in Y} y\:P(Y=y)\\
+  &= E\left[X\right]\:E\left[Y\right]
+  \end{align*}$$
+  For continuous variables
+  $$\begin{align*}
+  E\left[X\:Y\right] &= \int_{x} \int_{y} (x\cdot y)f_{X,Y}\left(x,y\right)\\
+  &= \int_{x} \int_{y} (x\cdot y)\left(f_{X}\left(x\right)\cdot f_{Y}\left(y\right)\right) &\text{(independence)}\\
+  &= \int_{x} x\cdot f_{X}\left(x\right)\:\int_{y} y\cdot f_{Y}\left(y\right)\\
+  &= E\left[X\right]\:E\left[Y\right]
+  \end{align*}$$

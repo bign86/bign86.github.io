@@ -23,7 +23,7 @@ To kill a process usually you need its PID number. On Unix there are many ways t
 
 ```bash
 pidof gedit
-2465
+  2465
 ```
 
 If you are not sure of the program name you can use the `ps` utility in the following way
@@ -36,14 +36,14 @@ The output is really long since it lists all the processes running on the machin
 
 ```bash
 ps aux | grep gedit
-nero    2465  1.6  2.1 451260 44708 ?        Sl   12:35   0:08 gedit /home/nero/www/whos_pos
+  nero    2465  1.6  2.1 451260 44708 ?        Sl   12:35   0:08 gedit /home/nero/www/whos_pos
 ```
 
 Another tool is `pgrep`. This command grep out running processess returning process name and PID.
 
 ```bash
 pgrep -l gedit
-2465 gedit
+  2465 gedit
 ```
 
 ## Killing a process

@@ -32,9 +32,9 @@ Additionally, it can be use ful to have a template for Jekyll. In this case I am
 In my case a Ruby version and a Bundler executable are already installed in the system
 
 ```zsh
-% which ruby
+which ruby
 /usr/bin/ruby
-% which bundler
+which bundler
 /usr/bin/bundler
 ```
 
@@ -42,20 +42,20 @@ However, the system installation may be outdated, and in general is advisable no
 I installed a new version of the two softwares using [Homebrew](https://brew.sh).
 
 ```zsh
-% brew install ruby
+brew install ruby
 ```
 
 To check the new version of Ruby is installed
 
 ```zsh
-% /usr/local/opt/ruby/bin/ruby --version
+/usr/local/opt/ruby/bin/ruby --version
 ruby 3.2.2 (2023-03-30 revision e51014f9c0) [x86_64-darwin21]
 ```
 
 Now that I have a new running version of Ruby, we can use it to install Jekyll with
 
 ```zsh
-% /usr/local/opt/ruby/bin/gem install jekyll
+/usr/local/opt/ruby/bin/gem install jekyll
 ```
 
 ### Minimal Mistakes
@@ -63,15 +63,15 @@ Now that I have a new running version of Ruby, we can use it to install Jekyll w
 We install the theme by cloning the Minimal Mistakes repository
 
 ```zsh
-% mkdir bign86.github.io
-% cd bign86.github.io
-% git clone https://github.com/mmistakes/minimal-mistakes.git
+mkdir bign86.github.io
+cd bign86.github.io
+git clone https://github.com/mmistakes/minimal-mistakes.git
 ```
 
 and deleting all the files and folders that are not needed to run the website
 
 ```zsh
-% rm -rf CHANGELOG.md README.md .git/ .editorconfig .gitattributes .github docs/ test/ minimal-mistakes-jekyll.gemspec screenshot.png screenshot-layouts.png
+rm -rf CHANGELOG.md README.md .git/ .editorconfig .gitattributes .github docs/ test/ minimal-mistakes-jekyll.gemspec screenshot.png screenshot-layouts.png
 ```
 
 ### Serving the website
@@ -79,9 +79,9 @@ and deleting all the files and folders that are not needed to run the website
 Now, we can simply install the required gem files into Ruby using Bundler, and serve the website
 
 ```zsh
-% bundle install
+bundle install
 # some time is needed for completion...
-% bundle exec jekyll serve
+bundle exec jekyll serve
 ```
 
 The website should now be reachable at [localhost:4000](http://127.0.0.1:4000).
@@ -92,15 +92,15 @@ I now want to store the content of the website on GitHub. For this I created a r
 First, I initialize a new git repo in the folder where we are working
 
 ```zsh
-% cd ..
-% git init bign86.github.io
+cd ..
+git init bign86.github.io
 ```
 
 and I connect the new repo to the correct remote and check that it has been set correctly
 
 ```zsh
-% git remote add origin https://github.com/bign86/bign86.github.io.git
-% git remote -v
+git remote add origin https://github.com/bign86/bign86.github.io.git
+git remote -v
 origin https://github.com/bign86/bign86.github.io.git (fetch)
 origin https://github.com/bign86/bign86.github.io.git (push)
 ```
@@ -108,9 +108,9 @@ origin https://github.com/bign86/bign86.github.io.git (push)
 Last, I commit everything and push to my new repository
 
 ```zsh
-% git add *
-% git commit -m "first commit"
-% git push --set-upstream origin master
+git add *
+git commit -m "first commit"
+git push --set-upstream origin master
 ```
 
 ## Bash and aliases
@@ -118,7 +118,7 @@ Last, I commit everything and push to my new repository
 It is possible to add the path of the newly installed Ruby version in Zsh with
 
 ```zsh
-% echo 'export PATH="/usr/local/opt/ruby/bin:$PATH"' >> ~/.zshrc
+echo 'export PATH="/usr/local/opt/ruby/bin:$PATH"' >> ~/.zshrc
 ```
 
 The same with Bundler.

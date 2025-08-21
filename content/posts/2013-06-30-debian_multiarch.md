@@ -26,26 +26,26 @@ To use the new feature we need dpkg >= 1.16.2 and apt >= 0.8.13 (better >= 0.9.4
 First we want to know our native architecture
 
 ```bash
-$ dpkg --print-architecture
+dpkg --print-architecture
 ```
 
 Then we want to know which foreign architectures are available
 
 ```bash
-$ dpkg --print-foreign-architectures
+dpkg --print-foreign-architectures
 ```
 
 With superuser privileges we can now add a new architecture
 
 ```bash
-# dpkg --add-architecture <arch>
+dpkg --add-architecture <arch>
 ```
 
 where `<arch>` must be one of the supported architectures.\\
 To remove an enabled architecture instead
 
 ```bash
-# dpkg --remove-architecture <arch>
+dpkg --remove-architecture <arch>
 ```
 
 ## Work with packages
@@ -53,15 +53,15 @@ To remove an enabled architecture instead
 Packages can be installed with `dpkg` or APT. In the latter the architecture has to be explicitly indicated after semicolon
 
 ```bash
-# dpkg -i package_<arch>.deb
-# apt-get install package:<arch>
+dpkg -i package_<arch>.deb
+apt-get install package:<arch>
 ```
 
 Package removal under multiarch is architecture selective so that the same package can be removed for one architecture but not for another
 
 ```bash
-# dpkg -r package:<arch>
-# apt-get remove package:<arch>
+dpkg -r package:<arch>
+apt-get remove package:<arch>
 ```
 
 ## Developers notes
@@ -71,7 +71,7 @@ Package removal under multiarch is architecture selective so that the same packa
 Multiarch supports cross-building. We can install all the required dependencies for a cross-build using
 
 ```bash
-# apt-get build-dep -a <arch> package
+apt-get build-dep -a <arch> package
 ```
 
 Apt will build all the required dependencies in the correct architecture. This works only if all the packages are correctly marked with the multiarch tags. It can still be not the case for all of them. A possible workaround is to manually install the package in the correct architecture using the apt command seen before. (By late 2015 all packages are correctly marked).

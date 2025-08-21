@@ -153,7 +153,6 @@ The standard output gives many informations
 | `(0major+302minor)pagefaults` | number of major/minor pagefault errors                                         |
 | `0swaps`                      | number of time the swap memory has been used                                   |
 
-
 ## Formatting the output
 
 ### POSIX output

@@ -28,17 +28,17 @@ The easiest approach would be to have a secondary array where to copy the "good"
 size_t new_n = 0;
 for (size_t i = 0; i < n; ++i)
 {
-  if (!isnan(arr[i]) new_n++;
+  if (!isnan(arr[i])) new_n++;
 }
 
 // allocate the new array
 double new_arr[new_n];
 
 // walk both arrays copying the valid values
-size_t j = 0; 
+size_t j = 0;
 for (size_t i = 0; i < n; ++i)
 {
-  if (!isnan(arr[i])
+  if (!isnan(arr[i]))
   {
     new_arr[j++] = arr[i];
   }
@@ -53,7 +53,7 @@ A faster solution is to modify the array in place by having a fast pointer runni
 size_t j = 0;
 for (size_t i = 0; i < n; ++i)
 {
-  if (!isnan(arr[i])
+  if (!isnan(arr[i]))
   {
     // copy the element from the fast pointer into the slow moving position
     arr[j++] = arr[i];

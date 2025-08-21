@@ -9,7 +9,7 @@ categories: [math, notes]
 math: true
 ---
 
-Basic definitions and notations used here are found [in this page](/notes/probability-definitions).
+Basic definitions and notations used here are found [at this page](/notes/probability-definitions).
 
 ### Law of total probability
 
@@ -23,7 +23,7 @@ The law of total probability connects marginal probabilities to conditional prob
 - **Continuous variables:** for continuous variables the rule is defined as
   $$P(A)=\int_{\mathbb{R}}P(A\:\vert\:X=x)\:dF_X(x)\stackrel{*}{=}\int_{\mathbb{R}}P(A\:\vert\:X=x)\:f_X(x)\:dx$$
   where the step marked with \(\stackrel{*}{=}\) is only valid if \(F_X\) admits a density function \(f_X\).
-  
+
 ### Chain rule
 
 The probability of the intersection of \(n\) events can be written as

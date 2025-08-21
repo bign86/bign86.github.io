@@ -17,7 +17,8 @@ This is a list of all the notes I created on math and finance topics in the hope
   - [Additional basic concepts](/notes/additional-concepts)
 - [Distributions](/notes/distributions)
   - [Moments and cumulants](/notes/moments)
-    - [Expected Value](/notes/expected-value)
+  - [Expected Value](/notes/expected-value)
+  - [Variance](/notes/variance)
 - [Descriptive statistic](/notes/descriptive-statistic)
   - [Median](/notes/median)
 - [Hypothesis testing](/notes/hypothesis-testing)
@@ -28,3 +29,10 @@ This is a list of all the notes I created on math and finance topics in the hope
 
 - [Binomial](/notes/binomial)
 - [Poisson](/notes/poisson)
+
+## Finance
+
+- [Cash-Flows basics](/notes/cash-flows)
+- [Pricing](/notes/pricing-basics)
+- [Options](/notes/options-intro)
+  - [Black-Schole](/notes/black-schole)

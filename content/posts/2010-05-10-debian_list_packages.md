@@ -23,7 +23,7 @@ This howto works with `dpkg` present in Debian and derivated.
 With `dpkg` you can list all the packages currently  installed in your system because `dpkg` keep all infos about your packages in the `/var/lib/dpkg/` directory.
 
 ```bash
-$ dpkg -l | grep ii
+dpkg -l | grep ii
 ii  cron                            3.0pl1-106             process scheduling daemon
 ii  cups                            1.3.11-1+b1            Common UNIX Printing System(tm) - server
 ii  cups-bsd                        1.3.11-1+b1            Common UNIX Printing System(tm) - BSD comman

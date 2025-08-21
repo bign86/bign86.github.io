@@ -1,0 +1,18 @@
+{
+    "frontMatter.framework.id": "hugo",
+    "frontMatter.content.publicFolder": "static",
+    "frontMatter.preview.host": "http://localhost:1313",
+    "frontMatter.content.pageFolders": [
+        {
+            "path": "[[workspace]]/content",
+            "title": "content"
+        },
+        {
+            "path": "[[workspace]]/archetypes"
+        },
+        {
+            "path": "[[workspace]]/content/posts"
+        }
+    ],
+    "frontMatter.git.enabled": true
+}
