@@ -120,5 +120,3 @@ Early exercise of an American option is always sub-optimal. By exercising the op
 
 - For a call option, if the underlying pays high dividends. The option does not give rights to receive the dividends, while a high yield depletes the value of the underlying.
 - For a put option, if the option is deep in-the-money and interest rates are high, it may be worth exercising the option.
-
-
