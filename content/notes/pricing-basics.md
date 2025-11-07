@@ -58,8 +58,8 @@ $$S_1 := \left(S_1^0,\ldots,S_1^n\right)\:\:\in\:\: p\left(\Omega,\mathcal{F},\m
 Assume the risk-free rate is \(r\) so the future price of the risk-free asset is given by
 $$S_1^0(\omega) = S_0^0(1 + r)\quad\forall\omega$$
 
-The probability \(P^\star\) is called **risk-neutral probability** or **martingale measure** if the expected value of the discounted future price under \(P^\star\) equals the current price:
-$$S_0^i = E_{P^*}\left[\frac{S_1^i}{1+r}\right]$$
+The probability \(\pi\) is called **risk-neutral probability** or **martingale measure** if the expected value of the discounted future price under \(\pi\) equals the current price:
+$$S_0^i = E_{\pi}\left[\frac{S_1^i}{1+r}\right]$$
 
 The risk-neutral measure exists if and only if two conditions are verified:
 
@@ -77,9 +77,9 @@ Risk-neutral probabilitites are a calculation tools useful to compare the price 
 
 ## Fundamental theorem of asset pricing
 
-The theorem states that a market is arbitrage-free if and only if there exists a risk-neutral measure \(P^\star\) equivalent to the original measure \(P\), i.e.
-$$\text{if}\:\:\exists P^\star\in\left(\Omega,\mathcal{F}\right)\quad\text{such that}\quad P^\star\approx P$$
+The theorem states that a market is arbitrage-free if and only if there exists a risk-neutral measure \(\pi\) equivalent to the original measure \(P\), i.e.
+$$\text{if}\:\:\exists \pi\in\left(\Omega,\mathcal{F}\right)\quad\text{such that}\quad\pi\approx P$$
 
 Two probability measures are equivalent if the measures agree which events have measure 0. In other words, given a set \(A\)
-$$P^\star\approx P\quad\forall A\quad\text{if and only if}\quad P[A]=0\text{ and }P^\star[A]=0$$
+$$\pi\approx P\quad\forall A\quad\text{if and only if}\quad P[A]=0\text{ and }\pi[A]=0$$
 

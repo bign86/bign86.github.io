@@ -33,6 +33,8 @@ This is a list of all the notes I created on math and finance topics in the hope
 ## Finance
 
 - [Cash-Flows basics](/notes/cash-flows)
-- [Pricing](/notes/pricing-basics)
+- [Pricing basic definitions](/notes/pricing-basics)
 - [Options](/notes/options-intro)
-  - [Black-Schole](/notes/black-schole)
+  - [Binomial Pricing](/notes/binomial-options-pricing-model)
+  - [Black-Scholes](/notes/black-scholes)
+  - [The solution to Black-Scholes](/notes/black-scholes-solution)
